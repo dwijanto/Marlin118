@@ -1005,7 +1005,7 @@
   //#define X2_IS_TMC2130
   #define Y_IS_TMC2130
   //#define Y2_IS_TMC2130
-  //#define Z_IS_TMC2130
+  #define Z_IS_TMC2130
   //#define Z2_IS_TMC2130
   //#define E0_IS_TMC2130
   //#define E1_IS_TMC2130
@@ -1034,13 +1034,13 @@
   #define INTERPOLATE       true  // Interpolate X/Y/Z_MICROSTEPS to 256
 
   #define X_CURRENT          800  // rms current in mA. Multiply by 1.41 for peak current.
-  #define X_MICROSTEPS        16  // 0..256
+  #define X_MICROSTEPS        32  //16  // 0..256
 
   #define Y_CURRENT          800
-  #define Y_MICROSTEPS        16
+  #define Y_MICROSTEPS        32  //16
 
   #define Z_CURRENT          800
-  #define Z_MICROSTEPS        16
+  #define Z_MICROSTEPS        32  //16
 
   #define X2_CURRENT         800
   #define X2_MICROSTEPS       16
