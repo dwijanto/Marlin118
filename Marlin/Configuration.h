@@ -358,9 +358,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Ultimaker
-  #define  DEFAULT_Kp 31.83 //22.2
-  #define  DEFAULT_Ki  2.64 //1.08
-  #define  DEFAULT_Kd 95.82 //114
+  #define  DEFAULT_Kp 31.51 //31.83 //22.2
+  #define  DEFAULT_Ki  2.39 //2.64 //1.08
+  #define  DEFAULT_Kd 103.91 //95.82 //114
 
   // MakerGear
   //#define  DEFAULT_Kp 7.0
@@ -532,16 +532,27 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
- #define MOTOR_STEPS_PER_REV 200
- // 1.8 degree = 200 ; 0.9 degree = 400
-#define DRIVER_MICRO_STEP 32
+  // 1.8 degree = 200 ; 0.9 degree = 400
+ #define MOTOR_STEPS_PER_REV_XYZ 400.0
+ #define MOTOR_STEPS_PER_REV_E 200.0
 //  1/16 = 16; 1/32 = 32
-#define THREADED_ROD 10.56
+#define DRIVER_MICRO_STEP_XYZE 32.0
+#define MOTOR_STEPS_XYZ (MOTOR_STEPS_PER_REV_XYZ * DRIVER_MICRO_STEP_XYZE)
+#define MOTOR_STEPS_E (MOTOR_STEPS_PER_REV_E * DRIVER_MICRO_STEP_XYZE)
+#define T2_BELT 2.0
+#define PULLEY_TEETH 16.0
+
 //M5 = 0.8 ; M8 = 1.25 ; MK7 = 10.56
+#define THREADED_PITCH_Z 0.8
+#define MK7 10.56
+#define XY_STEPS (MOTOR_STEPS_XYZ /(T2_BELT * PULLEY_TEETH)
+#define Z_STEPS (MOTOR_STEPS_XYZ /THREADED_PITCH_Z)
 #define PHI 3.14159
+#define E_STEPS (MOTOR_STEPS_E / (MK7 * PHI)
 
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
-//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 400, 400, 16000,(MOTOR_STEPS_PER_REV * DRIVER_MICRO_STEP) / (THREADED_ROD * PHI) } 192.92
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 400, 400, 16000,(MOTOR_STEPS_PER_REV * DRIVER_MICRO_STEP) / (THREADED_ROD * PHI) } 192.92 MK7
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, E_STEPS} 192.92 MK7
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 400, 400, 16000, 200 }
 /**
  * Default Max Feed Rate (mm/s)
@@ -772,7 +783,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR false  //E0 & E1 Opposite direction
 #define INVERT_E1_DIR true //false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
