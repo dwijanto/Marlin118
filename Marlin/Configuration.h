@@ -537,12 +537,12 @@
 #define DRIVER_MICRO_STEP 32
 //  1/16 = 16; 1/32 = 32
 #define THREADED_ROD 10.56
-//M5 = 0.8 ; M8 = 1.25 ; MK7 = 10.56
+//M5 = 0.8 ; M8 = 1.25 ; MK7 = 10.56 ; T8 Lead Screw pitch 2 mm 4 start = 2*4 = 8
 #define PHI 3.14159
 
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 400, 400, 16000,(MOTOR_STEPS_PER_REV * DRIVER_MICRO_STEP) / (THREADED_ROD * PHI) } 192.92
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 400, 400, 16000, 200 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 400, 400, 1600, 200 }
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
@@ -794,7 +794,7 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 175 //200
+#define X_BED_SIZE 170 //200
 #define Y_BED_SIZE 200
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
